@@ -105,7 +105,7 @@ void set_server_ip(Server* server, char* ip) {
     server->addr.sin_family = AF_INET;
     server->addr.sin_addr.s_addr = INADDR_ANY;
     //server->addr.sin_addr.s_addr = inet_addr(ip);
-    server->ip = ip;
+    server->ip = strdup(ip);
 }
 
 void set_server_port(Server* server, int port) {
@@ -127,6 +127,7 @@ void bind_and_listen(Server* server) {
 
 void close_server(Server* server) {
     close(server->fd);
+    free(server->ip);
     printf("Closed server\n");
 }
 
@@ -142,7 +143,7 @@ void* client(void* arg) {
     }
 
     char str[8];
-    const char* m = "Thanks!\n";
+    const char* m = "We'll be in touch!\n";
     sprintf(str, "%d", (int)strlen(m));
 
     Response res = {0};
@@ -199,4 +200,3 @@ int main() {
 
     return 0;
 }
-
