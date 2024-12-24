@@ -145,16 +145,16 @@ void* client(void* arg) {
     char lens[16];
     const char* m = "\
     <!DOCTYPE html>\n\
-    <html lang=\"en\">\n\
-        <head>\n\
-            <meta charset=\"UTF-8\">\n\
-            <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n\
-            <title>Server</title>\n\
-        </head>\n\
-    <body>\n\
-        <h1>Welcome!</h1>\n\
-        <p>We'll be right back.</p>\n\
-    </body>\n\
+        <html lang=\"en\">\n\
+            <head>\n\
+                <meta charset=\"UTF-8\">\n\
+                <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n\
+                <title>Server</title>\n\
+            </head>\n\
+        <body>\n\
+            <h1>Welcome!</h1>\n\
+            <p>We'll be right back.</p>\n\
+        </body>\n\
     </html>\n";
     sprintf(lens, "%d", (int)strlen(m));
 
