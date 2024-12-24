@@ -142,16 +142,28 @@ void* client(void* arg) {
         printf("Received: %s\n", in_buffer);
     }
 
-    char str[8];
-    const char* m = "We'll be in touch!\n";
-    sprintf(str, "%d", (int)strlen(m));
+    char lens[16];
+    const char* m = "\
+    <!DOCTYPE html>\n\
+    <html lang=\"en\">\n\
+        <head>\n\
+            <meta charset=\"UTF-8\">\n\
+            <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n\
+            <title>Server</title>\n\
+        </head>\n\
+    <body>\n\
+        <h1>Welcome!</h1>\n\
+        <p>We'll be right back.</p>\n\
+    </body>\n\
+    </html>\n";
+    sprintf(lens, "%d", (int)strlen(m));
 
     Response res = {0};
     response_alloc(&res);
     response_append_cstr(&res, "HTTP/1.1 200 OK\n");
-    response_append_cstr(&res, "Content-Type: text/plain\n");
+    response_append_cstr(&res, "Content-Type: text/html; charset=UTF-8\n");
     response_append_cstr(&res, "Content-Length: ");
-    response_append_cstr(&res, str);
+    response_append_cstr(&res, lens);
     response_append_cstr(&res, "\n\n");
     response_append_cstr(&res, m);
 
